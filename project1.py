@@ -5,11 +5,11 @@ int_rat = 0
 menu = True
 print("Hello. Welcome to Margin of Fate.")
 name = input("What is your name")
-print("Unfortunately, I have bad news", name, ".Your mom has cancer."
+print("Unfortunately, I have bad news", name,".Your mom has cancer."
 " Her treatment requires 1 million dollars")
 f = input("Would you like to save your mom? \n1.Yes \n2.No")
 if f == "1":
-    job = input("Let's choose the field you will use your knowledge at to accomplish your "
+    job = input("Let's choose the field you will use your knowledge at, to accomplish your "
     "goal in 1 million dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
     "2.Stock market trading (less work, less interest rate, less risk)")
     alive = True
@@ -24,7 +24,7 @@ while alive:
                 print("Considering time for sleep, the limit is 112 hours a week. We recommend to work for 70 hours "
             "a week to mitigate the burnout level.")
         if menu == "2":
-            print(bal,"\n",b_o,"\n",week,"\n",int_rat,)
+            print("Your balance =",bal,"\nYour burnout level =",b_o,"\nThis is week",week,"\nYour interest rate =",int_rat,)
         if menu == "9":
             alive = False
         try:
@@ -32,6 +32,3 @@ while alive:
             menu = False
         except:
             continue
-
-    
-            
