@@ -3,27 +3,34 @@ bal = 10000
 b_o = 0
 week = 1
 menu = True
-print("Hello. Welcome to Margin of Fate.")
+print("Hello. Welcome to Margin of Fate.\n")
 name = input("What is your name")
 print("Unfortunately, I have bad news", name,".Your mom has cancer."
-" Her treatment requires 200k dollars")
-f = input("Would you like to save your mom? \n1.Yes \n2.No")
-if f == "1":
-    job = input("Let's choose the field you will use your knowledge at to accomplish your "
-    "goal in 200k dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
-    "2.Stock market trading (less work, less interest rate, less risk)")
-    alive = True
-    print("It's a smart choice. \nLet's begin our journey")
-else: alive = False
+" Her treatment requires 200k dollars\n")
+while (True):
+    f = input("Would you like to save your mom? \n1.Yes \n2.No\n")
+    if f == "1":
+        alive = True
+        break
+    elif f == "2": 
+        alive = False
+        break
+    else:
+        print ("Enter the choice 1 or 2.\n")
+job = input("Let's choose the field you will use your knowledge at to accomplish your "
+"goal in 200k dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
+"2.Stock market trading (less work, less interest rate, less risk)")
+alive = True
+print("It's a smart choice. \nLet's begin our journey")
 while alive:
     while menu:
         bal = round(bal, 2)
         b_o = round(b_o, 2)
-        print("Good morning,",name,".This is week.",week,"Let's continue")
+        print("\nGood morning,",name,".This is week.",week,"Let's continue")
         print("What's your next move?")
-        choice = input("1.Check stats\n2.How many hours per day you will work?"
+        choice = input("\n1.Check stats\n2.How many hours per day you will work?"
         "\n3.Manage the time spent with your family or friends?" 
-        "\n4.Week budget to treat yourself? \n6.I'm ready for the next week \n9.Exit")
+        "\n4.Week budget to treat yourself? \n6.I'm ready for the next week \n9.Exit\n")
         if choice == "2":
             work = input("Enter how many hours you'd like to work this week? \nPress h for advice")
             if work == "h":
@@ -38,9 +45,13 @@ while alive:
         if choice == "6":
             ready = input("Are you sure you've completed your planning? \n1.Yes \n2.Return")
             if ready == "1":
-                work = float(work)
-                treat = float(treat)
-                menu = False
+                try:
+                    work = float(work)
+                    treat = float(treat)
+                    menu = False
+                except:
+                    print("Values have to be numbers")
+                    continue
         if choice == "9":
             alive = False
     if work<12:
@@ -58,10 +69,12 @@ while alive:
     m = random.uniform(w_alt-1,w_alt+1)
     int_rat = 0.25*m-1
     bal = bal*(1+int_rat)
+    if bal ==200000:
+        print("Congatulations! You did an awesome job")
     week = week+1
     if week==17:
         print("Your mom's surgery is tomorrow. Let's see if we have enough money")
-        if bal==200000:
-            print("Congratulations! You ssaved your mom")
+        if bal>=200000:
+            print("Congratulations! You saved your mom")
         else:alive=False
     menu = True
