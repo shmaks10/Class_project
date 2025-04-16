@@ -4,51 +4,88 @@ b_o = 0
 week = 1
 menu = True
 print("Hello. Welcome to Margin of Fate.\n")
-name = input("What is your name")
-print("Unfortunately, I have bad news", name,".Your mom has cancer."
+name = input("What is your name\n")
+print("\nUnfortunately, I have bad news", name,".Your mom has cancer."
 " Her treatment requires 200k dollars\n")
 while (True):
     f = input("Would you like to save your mom? \n1.Yes \n2.No\n")
-    if f == "1":
+    if f in ["1","2"]:
         alive = True
-        break
-    elif f == "2": 
-        alive = False
         break
     else:
         print ("Enter the choice 1 or 2.\n")
-job = input("Let's choose the field you will use your knowledge at to accomplish your "
-"goal in 200k dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
-"2.Stock market trading (less work, less interest rate, less risk)")
-alive = True
-print("It's a smart choice. \nLet's begin our journey")
+while (True):
+    job = input("\nLet's choose the field you will use your knowledge at to accomplish your "
+    "goal in 200k dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
+    "2.Stock market trading (less work, less interest rate, less risk)\n")
+    if job in ["1", "2"]:
+        print("It's a smart choice. \nLet's begin our journey\n")
+        break
+    else:
+        print ("Enter the choice 1 or 2.\n")
 while alive:
     while menu:
         bal = round(bal, 2)
         b_o = round(b_o, 2)
-        print("\nGood morning,",name,".This is week.",week,"Let's continue")
+        print(name,", this is week",week,".Let's continue")
         print("What's your next move?")
-        choice = input("\n1.Check stats\n2.How many hours per day you will work?"
-        "\n3.Manage the time spent with your family or friends?" 
-        "\n4.Week budget to treat yourself? \n6.I'm ready for the next week \n9.Exit\n")
+        while (True):
+            choice = input("\n1.Check stats\n2.How many hours per day you will work?"
+            "\n3.Manage the time spent with your family or friends?" 
+            "\n4.Week budget to treat yourself? \n6.I'm ready for the next week \n9.Exit\n")
+            if choice in ["1", "2", "3", "4", "5", "6", "9"]:
+                break
+            else:
+                print ("\nEnter the value related to your choice")
         if choice == "2":
-            work = input("Enter how many hours you'd like to work this week? \nPress h for advice")
-            if work == "h":
-                print("Considering time for sleep, the limit is 16 hours per day.")
+            while (True):
+                work = input("\nEnter how many hours you'd like to work this week? \nPress h for advice\n")
+                if work == "h":
+                    print("\nConsidering time for sleep, the limit is 16 hours per day.")
+                else:
+                    try:
+                        work = float(work)
+                        if 0 <= work <= 24:
+                            break
+                        else:
+                            print ("\nSince there is 24 hours in a day, you need to choose a number between 0 and 24")
+                    except:
+                        print("Enter a valid number or 'h' for help")
         if choice == "1":
-            print("Your balance =",bal,"\nYour burnout level =",b_o,"\nThis is week",week,)
+            print("Your balance =",bal,"\nYour burnout level =",b_o,"%\nThis is week",week,)
         if choice == "3":
-            friend = input("Would you like to spend this weekend with your close ones?\n1.Yes\n2.No")
+            while (True):
+                friend = input("\nWould you like to spend this weekend with your close ones?\n1.Yes\n2.No\n")
+                if friend in ["1","2"]:
+                    break
+                else:
+                    print ("\nEnter the value related to your choice")
         if choice == "4":
-            treat = input("As a normal human you need to meet your own needs and treat yourself."
-            "\nEnter the amount of money you want to assign for your leisure")
+            while (True):
+                treat = input("As a normal human you need to meet your own needs and treat yourself."
+                "\nEnter the amount of money you want to assign for your leisure\n")
+                try:
+                    treat = float(treat)
+                    if 0 <= treat <= bal:
+                        break
+                    else:
+                        print("This amount can't be greater than you balance.")
+                except:
+                    print("If you don't want to assign any money, just enter 0")
         if choice == "6":
-            ready = input("Are you sure you've completed your planning? \n1.Yes \n2.Return")
+            if friend == "1":
+                print ("You chose to:\nWork for",work,"hours\nTo spend a weekend with your close ones" \
+                "\nAssigned",treat,"$ to treat yourself")
+            if friend == "2":
+                print ("You chose to:\nWork for",work,"hours\nNot to spend a weekend with your close ones" \
+                "\nAssign",treat,"$ to treat yourself")
+            ready = input("Are you sure you've completed your planning? \n1.Yes \n2.Return\n")
             if ready == "1":
                 try:
                     work = float(work)
                     treat = float(treat)
                     menu = False
+                    break
                 except:
                     print("Values have to be numbers")
                     continue
@@ -74,7 +111,7 @@ while alive:
     week = week+1
     if week==17:
         print("Your mom's surgery is tomorrow. Let's see if we have enough money")
-        if bal>=200000:
-            print("Congratulations! You saved your mom")
-        else:alive=False
+    if bal>=200000:
+        print("Congratulations! You saved your mom")
+    else:alive=False
     menu = True
