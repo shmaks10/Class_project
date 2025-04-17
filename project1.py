@@ -1,6 +1,6 @@
 import random
 bal = 10000
-b_o = 0
+b_o1 = 0
 week = 1
 menu = True
 print("Hello. Welcome to Margin of Fate.\n")
@@ -24,10 +24,10 @@ while (True):
     else:
         print ("Enter the choice 1 or 2.\n")
 while alive:
+    print("Good morning,",name,".This is week",week,".Let's continue")
     while menu:
         bal = round(bal, 2)
-        b_o = round(b_o, 2)
-        print(name,", this is week",week,".Let's continue")
+        b_o1 = round(b_o1, 2)
         print("What's your next move?")
         while (True):
             choice = input("\n1.Check stats\n2.How many hours per day you will work?"
@@ -36,7 +36,7 @@ while alive:
             if choice in ["1", "2", "3", "4", "5", "6", "9"]:
                 break
             else:
-                print ("\nEnter the value related to your choice")
+                print ("\nEnter the number related to your choice")
         if choice == "2":
             while (True):
                 work = input("\nEnter how many hours you'd like to work this week? \nPress h for advice\n")
@@ -45,33 +45,33 @@ while alive:
                 else:
                     try:
                         work = float(work)
-                        if 0 <= work <= 24:
+                        if 0 <= work <= 16:
                             break
                         else:
-                            print ("\nSince there is 24 hours in a day, you need to choose a number between 0 and 24")
+                            print ("\nSince you can't work while sleeping, you need to choose a number between 0 and 16")
                     except:
-                        print("Enter a valid number or 'h' for help")
+                        print("\nEnter a valid number or 'h' for help")
         if choice == "1":
-            print("Your balance =",bal,"\nYour burnout level =",b_o,"%\nThis is week",week,)
+            print("Your balance =",bal,"\nYour burnout level =",b_o1,"%\nThis is week",week,)
         if choice == "3":
             while (True):
                 friend = input("\nWould you like to spend this weekend with your close ones?\n1.Yes\n2.No\n")
                 if friend in ["1","2"]:
                     break
                 else:
-                    print ("\nEnter the value related to your choice")
+                    print ("\nEnter a number related to your choice")
         if choice == "4":
             while (True):
-                treat = input("As a normal human you need to meet your own needs and treat yourself."
+                treat = input("\nAs a normal human you need to meet your own needs and treat yourself."
                 "\nEnter the amount of money you want to assign for your leisure\n")
                 try:
                     treat = float(treat)
                     if 0 <= treat <= bal:
                         break
                     else:
-                        print("This amount can't be greater than you balance.")
+                        print("\nThis amount can't be greater than you balance.")
                 except:
-                    print("If you don't want to assign any money, just enter 0")
+                    print("\nIf you don't want to assign any money, just enter 0")
         if choice == "6":
             if friend == "1":
                 print ("You chose to:\nWork for",work,"hours\nTo spend a weekend with your close ones" \
@@ -81,37 +81,30 @@ while alive:
                 "\nAssign",treat,"$ to treat yourself")
             ready = input("Are you sure you've completed your planning? \n1.Yes \n2.Return\n")
             if ready == "1":
-                try:
-                    work = float(work)
-                    treat = float(treat)
-                    menu = False
-                    break
-                except:
-                    print("Values have to be numbers")
-                    continue
+                menu = False
         if choice == "9":
             alive = False
     if work<12:
         b_o = ((work+2)**1.3)-8
     else:
         b_o = ((work-6.5)**2)-7.5
+    b_o1 = b_o+b_o1
     if friend == "1":
-        b_o = b_o/1.2
+        b_o1 = b_o1/1.2
+        work = (5*work)/7
     if treat>0:
-        b_o = b_o*(1-(treat/bal)**2)
-        bal = bal-treat
+        b_o1 = b_o1*(1-(treat/bal)**2)
     int_rat = 0.25*work-1
-    int_rat = int_rat*(1-(b_o/100))
+    int_rat = int_rat*(1-(b_o1/100))
     w_alt = (int_rat+1)/0.25
     m = random.uniform(w_alt-1,w_alt+1)
     int_rat = 0.25*m-1
+    bal = bal-treat
     bal = bal*(1+int_rat)
-    if bal ==200000:
-        print("Congatulations! You did an awesome job")
-    week = week+1
+    week = week+1 
     if week==17:
         print("Your mom's surgery is tomorrow. Let's see if we have enough money")
-    if bal>=200000:
-        print("Congratulations! You saved your mom")
-    else:alive=False
+        if bal>=200000:
+            print("Congratulations! You saved your mom")
+        else:alive=False
     menu = True
