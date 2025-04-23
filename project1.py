@@ -3,32 +3,34 @@ bal = 10000
 b_o1 = 0
 week = 1
 menu = True
-print("Hello. Welcome to Margin of Fate.\n")
-name = input("What is your name\n")
-print("\nUnfortunately, I have bad news", name,".Your mom has cancer."
-" Her treatment requires 200k dollars\n")
+print("Welcome to *Margin of Fate*, a journey where time, money, and heart collide.\n")
+name = input("What is your name?\n")
+print("\nUnfortunately, I have terrible news", name,". Your mother has been diagnosed with cancer.")
+print("Her only hope is a treatment that costs $200,000.\n")
 while (True):
-    f = input("Would you like to save your mom? \n1.Yes \n2.No\n")
+    f = input("Will you fight to save your mom's life?\n1. Yes, I’ll do whatever it takes.\n2. No, it’s too much.\n")
     if f in ["1","2"]:
         alive = True
         break
     else:
         print ("Enter the choice 1 or 2.\n")
 while (True):
-    job = input("\nLet's choose the field you will use your knowledge at to accomplish your "
-    "goal in 200k dollars \n1.Crypto (more work, bigger interest rate, bigger risk)\n"
-    "2.Stock market trading (less work, less interest rate, less risk)\n")
+    job = input("\nChoose your financial battlefield to earn the $200,000 needed:\n"
+    "1. Crypto – High stakes, higher risks, and wild rewards.\n"
+    "2. Stock Market – A steadier path with smaller gains and safer steps.\n")
     if job in ["1", "2"]:
         print("It's a smart choice. \nLet's begin our journey\n")
         break
     else:
         print ("Enter the choice 1 or 2.\n")
 while alive:
-    print("Good morning,",name,".This is week",week,".Let's continue")
+    bal = round(bal, 2)
+    b_o1 = round(b_o1, 2)
+    print("Week",week,"begins,",name,". Another chance to rise—or fall. Let’s make it count.\n")
+    remain = 200000-bal
+    print("You are now at",bal,"$\nYou are",b_o1,"%" "burnt out.\nYou have",remain,"$ yet to earn")
     while menu:
-        bal = round(bal, 2)
-        b_o1 = round(b_o1, 2)
-        print("What's your next move?")
+        print("Menu:")
         while (True):
             choice = input("\n1.Check stats\n2.How many hours per day you will work?"
             "\n3.Manage the time spent with your family or friends?" 
@@ -79,15 +81,22 @@ while alive:
             if friend == "2":
                 print ("You chose to:\nWork for",work,"hours\nNot to spend a weekend with your close ones" \
                 "\nAssign",treat,"$ to treat yourself")
-            ready = input("Are you sure you've completed your planning? \n1.Yes \n2.Return\n")
-            if ready == "1":
-                menu = False
+            while (True):
+                ready = input("Are you confident in your plan for this week?\n1. Yes, I'm ready.\n2. No, I want to adjust something.\n")
+                if ready == "1":
+                    menu = False
+                    break
+                if ready == "2":
+                    break
+                else:
+                    print ("Enter the number related to your choice")
         if choice == "9":
             alive = False
     if work<12:
         b_o = ((work+2)**1.3)-8
     else:
         b_o = ((work-6.5)**2)-7.5
+    b_o1 = b_o1/1.3
     b_o1 = b_o+b_o1
     if friend == "1":
         b_o1 = b_o1/1.2
