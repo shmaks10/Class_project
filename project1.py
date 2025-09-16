@@ -3,6 +3,7 @@ bal = 10000
 b_o1 = 0
 week = 1
 menu = True
+alive = True
 print("Welcome to *Margin of Fate*, a journey where time, money, and heart collide.\n")
 name = input("What is your name?\n")
 print("\nUnfortunately, I have terrible news", name,". Your mother has been diagnosed with cancer.")
@@ -10,8 +11,10 @@ print("Her only hope is a treatment that costs $200,000.\n")
 while (True):
     f = input("Will you fight to save your mom's life?\n1. Yes, I’ll do whatever it takes.\n2. No, it’s too much.\n")
     if f in ["1","2"]:
-        alive = True
-        break
+        if f == "1":
+            break
+        else:
+            alive = False
     else:
         print ("Enter the choice 1 or 2.\n")
 while (True):
